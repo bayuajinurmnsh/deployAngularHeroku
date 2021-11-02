@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Login Form</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" id="loginForm">
+        
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                formControlName="email"
+            >
+            <span *ngIf="email && email.touched && email.invalid" style="color:red">
+                Input Email is invalid
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Password</label>
+            <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                formControlName="password"
+            >
+            <span *ngIf="password && password.touched && password.invalid" style="color:red">
+                Input password is invalid
+            </span>
+        </div>
+
+        <button 
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!loginForm.valid"
+        > Login
+
+        </button>
+    </form>
+
+    <div *ngIf="currentUser.isLogin">
+        Successfully login, Hello, {{currentUser.email}}
+    </div>
+</div>
